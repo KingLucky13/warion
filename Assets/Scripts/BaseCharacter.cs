@@ -1,5 +1,6 @@
 
 using LearnGame.Movement;
+using LearnGame.Pickup;
 using LearnGame.Shooting;
 using UnityEngine;
 namespace LearnGame
@@ -45,12 +46,19 @@ namespace LearnGame
                 Destroy(gameObject);
             }
         }
+
         protected void OnTriggerEnter(Collider other)
         {
             if(LayerUtils.IsBullet(other.gameObject))
             {
                 Bullet bullet=other.gameObject.GetComponent<Bullet>();
                 _hp -=bullet.Damage;
+                Destroy(other.gameObject);
+            }
+            else if(LayerUtils.IsItem(other.gameObject))
+            {
+                var item = other.gameObject.GetComponent<PickUpWeapon>();
+                _shootingController.SetWeapon(item.WeaponPrefab, _hand);
                 Destroy(other.gameObject);
             }
         }
