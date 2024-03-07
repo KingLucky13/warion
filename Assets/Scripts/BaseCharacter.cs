@@ -14,9 +14,9 @@ namespace LearnGame
         [SerializeField]
         private float _hp = 2f;
         private IMovementDirectionSource _movementDirectionSource;
-   
         private CharacterMovementController _characterMovementController;
         private ShootingController _shootingController;
+
         protected void Awake()
         {
             _movementDirectionSource=GetComponent<IMovementDirectionSource>();
@@ -24,6 +24,7 @@ namespace LearnGame
             _characterMovementController = GetComponent<CharacterMovementController>();
             _shootingController = GetComponent<ShootingController>();
         }
+
         protected void Start()
         {
             _shootingController.SetWeapon(_baseWeapon, _hand);
@@ -39,7 +40,7 @@ namespace LearnGame
             }
             _characterMovementController.MovementDirection = direction;
             _characterMovementController.LookDirection = lookDirection;
-            if (_hp < 0)
+            if (_hp <= 0)
             {
                 Destroy(gameObject);
             }

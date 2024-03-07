@@ -12,7 +12,6 @@ namespace LearnGame.Shooting
         private GameObject _target;
         private Collider[] _colliders=new Collider[2];
 
-        // Update is called once per frame
         protected void Update()
         {
             _target = getTarget();
@@ -34,7 +33,7 @@ namespace LearnGame.Shooting
             int mask = LayerUtils.EnemyMask;
 
             var size = Physics.OverlapSphereNonAlloc(weaponPosition,attackRadius,_colliders,mask);
-            if (size > 0)
+            if (size > 1)
             {
                 for (int i = 0; i < size; i++)
                 {

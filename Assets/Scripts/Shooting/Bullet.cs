@@ -9,6 +9,7 @@ namespace LearnGame.Shooting
         private float _maxDistance;
         private float _currentDistance;
         public float Damage { get; private set; }
+
         public void Initialize(Vector3 direction,float speed,float maxDistance,float damage)
         {
             _direction = direction;
@@ -16,6 +17,7 @@ namespace LearnGame.Shooting
             _maxDistance = maxDistance;
             Damage = damage;
         }
+
         protected void Update()
         {
             float delta=_speed*Time.deltaTime;

@@ -19,6 +19,7 @@ namespace LearnGame.Shooting
         private Transform _bulletSpawnPosition;
         [SerializeField]
         private float _damage = 1f;
+
         public void Shoot(Vector3 targetPoint) 
         {
             Bullet bullet = Instantiate(BulletPrefab, _bulletSpawnPosition.position, Quaternion.identity);

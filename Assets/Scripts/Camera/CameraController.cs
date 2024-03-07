@@ -11,6 +11,7 @@ namespace LearnGame.Camera
         private Vector3 _cameraOffset = Vector3.zero;
         [SerializeField]
         private Vector3 _rotationOffset = Vector3.zero;
+
         protected void Awake()
         {
             if (_player == null)

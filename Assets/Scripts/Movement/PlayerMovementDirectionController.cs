@@ -13,6 +13,7 @@ namespace LearnGame.Movement
         {
             _camera = UnityEngine.Camera.main;
         }
+
         protected void Update()
         {
             var horizontal = Input.GetAxis("Horizontal");
