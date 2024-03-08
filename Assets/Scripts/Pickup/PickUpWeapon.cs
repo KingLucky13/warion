@@ -3,10 +3,15 @@ using UnityEngine;
 
 namespace LearnGame.Pickup
 {
-    public class PickUpWeapon : MonoBehaviour
+    public class PickUpWeapon : PickUpItem
     {
-        [field:SerializeField]
-        public Weapon WeaponPrefab { get; private set; }
+        [SerializeField]
+        private Weapon _weaponPrefab;
 
+        public override void PickUp(BaseCharacter character)
+        {
+            base.PickUp(character);
+            character.SetWeapon(_weaponPrefab);
+        }
     }
 }

@@ -3,10 +3,11 @@ using LearnGame.Movement;
 using LearnGame.Pickup;
 using LearnGame.Shooting;
 using UnityEngine;
+using static UnityEditor.Progress;
 namespace LearnGame
 {
     [RequireComponent(typeof(CharacterMovementController),typeof(ShootingController))]
-    public class BaseCharacter : MonoBehaviour
+    public abstract class BaseCharacter : MonoBehaviour
     {
         [SerializeField]
         private Weapon _baseWeapon;
@@ -28,7 +29,7 @@ namespace LearnGame
 
         protected void Start()
         {
-            _shootingController.SetWeapon(_baseWeapon, _hand);
+            SetWeapon(_baseWeapon);
         }
 
         protected void Update()
@@ -58,9 +59,14 @@ namespace LearnGame
             else if(LayerUtils.IsItem(other.gameObject))
             {
                 var item = other.gameObject.GetComponent<PickUpWeapon>();
-                _shootingController.SetWeapon(item.WeaponPrefab, _hand);
+                item.PickUp(this);
                 Destroy(other.gameObject);
             }
+        }
+
+        public void SetWeapon(Weapon weapon)
+        {
+            _shootingController.SetWeapon(weapon, _hand);
         }
     }
 }
