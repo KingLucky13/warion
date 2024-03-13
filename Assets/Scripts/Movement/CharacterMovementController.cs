@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 namespace LearnGame.Movement
 {
     [RequireComponent(typeof(CharacterController))]
@@ -16,6 +13,10 @@ namespace LearnGame.Movement
         public Vector3 MovementDirection { get; set; }
         public Vector3 LookDirection { get; set; }
         private CharacterController _characterController;
+
+        [SerializeField]
+        private float _accelerationPower = 1.5f;
+        public float accelerationTime=0f;
 
         protected void Awake()
         {
@@ -34,6 +35,11 @@ namespace LearnGame.Movement
         private void Translate()
         {
             Vector3 delta = MovementDirection * _speed * Time.deltaTime;
+            if (accelerationTime > 0f)
+            {
+                delta = delta * _accelerationPower;
+                accelerationTime -= Time.deltaTime;
+            }
             _characterController.Move(delta);
         }
 

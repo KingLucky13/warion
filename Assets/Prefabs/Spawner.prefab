@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 6603061913727958921}
   - component: {fileID: 7024559284708455595}
   m_Layer: 0
-  m_Name: RifleSpawner
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6603061913727958921
 Transform:
   m_ObjectHideFlags: 0
@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02f8ca441a32364f9a8bf1998566dc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pickUpPrefab: {fileID: 7626998659601541497, guid: 28c326f49b0c2e54d9a03f6d036a65d6, type: 3}
+  _pickUpPrefab: {fileID: 0}
   _range: 2
   _maxCount: 2
-  _spawnIntervalSec: 10
+  _minSpawnIntervalSec: 10
+  _maxSpawnIntervalSec: 10

@@ -2,6 +2,7 @@
 using LearnGame.Movement;
 using LearnGame.Pickup;
 using LearnGame.Shooting;
+using System;
 using UnityEngine;
 using static UnityEditor.Progress;
 namespace LearnGame
@@ -16,9 +17,8 @@ namespace LearnGame
         [SerializeField]
         private float _hp = 2f;
         private IMovementDirectionSource _movementDirectionSource;
-        private CharacterMovementController _characterMovementController;
+        public CharacterMovementController _characterMovementController;
         private ShootingController _shootingController;
-
         protected void Awake()
         {
             _movementDirectionSource=GetComponent<IMovementDirectionSource>();
@@ -58,7 +58,7 @@ namespace LearnGame
             }
             else if(LayerUtils.IsItem(other.gameObject))
             {
-                var item = other.gameObject.GetComponent<PickUpWeapon>();
+                var item = other.gameObject.GetComponent<PickUpItem>();
                 item.PickUp(this);
                 Destroy(other.gameObject);
             }
@@ -68,5 +68,11 @@ namespace LearnGame
         {
             _shootingController.SetWeapon(weapon, _hand);
         }
+        
+        public void SetSpeedBoost(float time)
+        {
+            _characterMovementController.accelerationTime = time;
+        }
+
     }
 }

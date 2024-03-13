@@ -1,5 +1,4 @@
-﻿using LearnGame.Shooting;
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace LearnGame.Pickup

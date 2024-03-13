@@ -13,11 +13,18 @@ namespace LearnGame.Pickup
         [SerializeField]
         private int _maxCount = 2;
         [SerializeField]
-        private float _spawnIntervalSec = 10f;
+        private float _minSpawnIntervalSec = 10f;
+        [SerializeField]
+        private float _maxSpawnIntervalSec = 10f;
 
+        private float _spawnIntervalSec;
         private float _curentSpawnTimerSec;
         private float _curentCount;
 
+        protected void Start()
+        {
+         _spawnIntervalSec=Random.Range(_minSpawnIntervalSec, _maxSpawnIntervalSec);
+        }
         protected void Update()
         {
             if(_curentCount< _maxCount)
@@ -25,6 +32,7 @@ namespace LearnGame.Pickup
                 _curentSpawnTimerSec += Time.deltaTime;
                 if (_curentSpawnTimerSec > _spawnIntervalSec)
                 {
+                    _spawnIntervalSec = Random.Range(_minSpawnIntervalSec, _maxSpawnIntervalSec);
                     _curentSpawnTimerSec = 0;
                     _curentCount++;
 
