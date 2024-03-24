@@ -13,6 +13,7 @@ namespace LearnGame
         public static readonly int ItemLayer=LayerMask.NameToLayer(ItemLayerName);
 
         public static readonly int EnemyMask =LayerMask.GetMask(EnemyLayerName,PlayerLayerName);
+        public static readonly int ItemMask =LayerMask.GetMask(ItemLayerName);
 
         public static bool IsBullet(GameObject other) =>other.layer == BulletLayer;
         public static bool IsItem(GameObject other) =>other.layer == ItemLayer;

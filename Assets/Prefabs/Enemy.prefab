@@ -126,10 +126,11 @@ GameObject:
   - component: {fileID: 1073962421686246206}
   - component: {fileID: 7712531842051110408}
   - component: {fileID: 5283607272181118254}
-  - component: {fileID: 8271489679125769528}
   - component: {fileID: 6126851941021101048}
   - component: {fileID: 6661081660277669089}
   - component: {fileID: 488463425258881966}
+  - component: {fileID: 4293303955426246344}
+  - component: {fileID: 6509630104676226059}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -225,23 +226,11 @@ CharacterController:
   serializedVersion: 3
   m_Height: 2
   m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_SlopeLimit: 15
+  m_StepOffset: 0.2
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8271489679125769528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8797938751181777943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d615f722ed186a4abe810bd94d48f5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6126851941021101048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,8 +243,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0c2f3ce0c68fd140b8b6ce47bb8ea3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
-  _rotation_speed: 10
+  _speed: 3
+  _rotationSpeed: 10
 --- !u!114 &6661081660277669089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,3 +272,28 @@ MonoBehaviour:
   _baseWeapon: {fileID: 6085233248160983363, guid: 5aab1000547d46045ba723e7ece7c05e, type: 3}
   _hand: {fileID: 7458844750037056483}
   _hp: 5
+--- !u!114 &4293303955426246344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8797938751181777943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd4bb75d31b6da5409b44f3f5c27026b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6509630104676226059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8797938751181777943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa9c631467bd3c24a8bf58f1418d847d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 100

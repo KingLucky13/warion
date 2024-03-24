@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70f6bb631b65ca2479fe3df4076dbefe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _accelerationPower: 1.5
 --- !u!143 &7167717882870839844
 CharacterController:
   m_ObjectHideFlags: 0
@@ -206,8 +207,8 @@ CharacterController:
   serializedVersion: 3
   m_Height: 2
   m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_SlopeLimit: 15
+  m_StepOffset: 0.2
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -224,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
-  _rotation_speed: 10
+  _rotationSpeed: 10
 --- !u!114 &3432285154672941283
 MonoBehaviour:
   m_ObjectHideFlags: 0
