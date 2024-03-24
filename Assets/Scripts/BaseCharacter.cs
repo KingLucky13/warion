@@ -17,7 +17,7 @@ namespace LearnGame
         [SerializeField]
         private float _hp = 2f;
         private IMovementDirectionSource _movementDirectionSource;
-        public CharacterMovementController _characterMovementController;
+        private CharacterMovementController _characterMovementController;
         private ShootingController _shootingController;
         protected void Awake()
         {
@@ -69,9 +69,9 @@ namespace LearnGame
             _shootingController.SetWeapon(weapon, _hand);
         }
         
-        public void SetSpeedBoost(float time)
+        public void SetSpeedBoost(float power,float time)
         {
-            _characterMovementController.accelerationTime = time;
+            _characterMovementController.setSpeedBoost(power,time);
         }
 
     }

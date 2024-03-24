@@ -14,9 +14,8 @@ namespace LearnGame.Movement
         public Vector3 LookDirection { get; set; }
         private CharacterController _characterController;
 
-        [SerializeField]
-        private float _accelerationPower = 1.5f;
-        public float accelerationTime=0f;
+        private float _accelerationPower = 1f;
+        private float _accelerationTime=0f;
 
         protected void Awake()
         {
@@ -35,10 +34,10 @@ namespace LearnGame.Movement
         private void Translate()
         {
             Vector3 delta = MovementDirection * _speed * Time.deltaTime;
-            if (accelerationTime > 0f)
+            if (_accelerationTime > 0f)
             {
                 delta = delta * _accelerationPower;
-                accelerationTime -= Time.deltaTime;
+                _accelerationTime -= Time.deltaTime;
             }
             _characterController.Move(delta);
         }
@@ -52,6 +51,12 @@ namespace LearnGame.Movement
                 Quaternion newRotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation(LookDirection,Vector3.up),_rotationSpeed*Time.deltaTime);
                 transform.rotation= newRotation;
             }
+        }
+
+        public void setSpeedBoost(float power,float time)
+        {
+            _accelerationPower = power;
+            _accelerationTime = time;
         }
     }
 }
