@@ -11,11 +11,17 @@ namespace LearnGame
     public abstract class BaseCharacter : MonoBehaviour
     {
         [SerializeField]
+        private Animator _animator;
+
+        [SerializeField]
         private Weapon _baseWeapon;
+
         [SerializeField]
         private Transform _hand;
+
         [SerializeField]
         private float _hp = 2f;
+
         private IMovementDirectionSource _movementDirectionSource;
         private CharacterMovementController _characterMovementController;
         private ShootingController _shootingController;
@@ -42,6 +48,10 @@ namespace LearnGame
             }
             _characterMovementController.MovementDirection = direction;
             _characterMovementController.LookDirection = lookDirection;
+
+            _animator.SetBool("isMoving",direction !=  Vector3.zero);
+            _animator.SetBool("isShooting",_shootingController.HasTargert);
+
             if (_hp <= 0)
             {
                 Destroy(gameObject);
