@@ -4,12 +4,15 @@ using LearnGame.Pickup;
 using LearnGame.Shooting;
 using System;
 using UnityEngine;
-using static UnityEditor.Progress;
+
 namespace LearnGame
 {
     [RequireComponent(typeof(CharacterMovementController),typeof(ShootingController))]
     public abstract class BaseCharacter : MonoBehaviour
     {
+
+        public event Action<BaseCharacter> Dead;
+
         [SerializeField]
         private Animator _animator;
 
@@ -54,6 +57,7 @@ namespace LearnGame
 
             if (_hp <= 0)
             {
+                Dead?.Invoke(this);
                 Destroy(gameObject);
             }
         }
