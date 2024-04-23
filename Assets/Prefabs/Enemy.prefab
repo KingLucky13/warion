@@ -1697,8 +1697,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0c2f3ce0c68fd140b8b6ce47bb8ea3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
-  _rotationSpeed: 10
+  _speed: 4
+  _rotationSpeed: 8
 --- !u!114 &6661081660277669089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1726,7 +1726,7 @@ MonoBehaviour:
   _animator: {fileID: -5949900456550321119}
   _baseWeapon: {fileID: 6085233248160983363, guid: 5aab1000547d46045ba723e7ece7c05e, type: 3}
   _hand: {fileID: 8368798462788482988}
-  _hp: 5
+  _hp: 1
 --- !u!114 &4293303955426246344
 MonoBehaviour:
   m_ObjectHideFlags: 0
