@@ -6,7 +6,7 @@ namespace LearnGame.Camera
     public class CameraController : MonoBehaviour
     {
         [SerializeField]
-        private PlayerCharacter _player;
+        private PlayerCharacterView _player;
         [SerializeField]
         private Vector3 _cameraOffset = Vector3.zero;
         [SerializeField]

@@ -1,61 +1,44 @@
-﻿using System;
+﻿using LearnGame.Timer;
 using UnityEngine;
 
 namespace LearnGame.Shooting
 {
-    public class ShootingController : MonoBehaviour
+    public class ShootingController
     {
-        public bool HasTargert => _target != null;
-        public Vector3 TargetPosition => _target.transform.position;
-        private Weapon _weapon;
-        private float _nextShotTimeSec;
-        private GameObject _target;
-        private Collider[] _colliders=new Collider[2];
+        public bool HasTarget => _target != null;
+        public Vector3 TargetPosition => _target.Transform.Position;
 
-        protected void Update()
+        private WeaponModel _weapon;
+
+        private float _nextShotTimeSec;
+        private BaseCharacterModel _target;
+
+        private readonly IShootingTarget _shootingTarget;
+        private readonly ITimer _timer;
+
+        public ShootingController(IShootingTarget shootingTarget,ITimer timer)
         {
-            _target = getTarget();
-            _nextShotTimeSec -= Time.deltaTime;
+            _shootingTarget = shootingTarget;
+            _timer = timer;
+        }
+
+        public void TryShoot(Vector3 position)
+        {
+            _target = _shootingTarget.GetTarget(position,_weapon.Description.ShootRadius);
+
+            _nextShotTimeSec -= _timer.DeltaTime;
             if (_nextShotTimeSec < 0)
             {
-                if (HasTargert)
-                    _weapon.Shoot(TargetPosition);
+                if (HasTarget)
+                    _weapon.Shoot(position,TargetPosition);
             
-                _nextShotTimeSec = _weapon.ShootSpeedSec;
+                _nextShotTimeSec = _weapon.Description.ShootSpeedSec;
             }
         }
 
-        private GameObject getTarget()
+        public void SetWeapon(WeaponModel weapon) 
         {
-            GameObject target = null;
-            Vector3 weaponPosition = _weapon.transform.position;
-            float attackRadius = _weapon.ShootRadius;
-            int mask = LayerUtils.EnemyMask;
-
-            var size = Physics.OverlapSphereNonAlloc(weaponPosition,attackRadius,_colliders,mask);
-            if (size > 1)
-            {
-                for (int i = 0; i < size; i++)
-                {
-                    if (_colliders[i].gameObject != gameObject)
-                    {
-                        target = _colliders[i].gameObject;
-                        break;
-                    }
-                }
-            }
-            return target; 
-        }
-
-        public void SetWeapon(Weapon weaponPrefab,Transform hand) 
-        {
-            if(_weapon != null)
-            {
-                Destroy(_weapon.gameObject);
-            }
-            _weapon=Instantiate(weaponPrefab,hand);
-            _weapon.transform.localPosition = Vector3.zero;
-            _weapon.transform.localRotation = Quaternion.identity;
+            _weapon = weapon;
         }
     }
 }

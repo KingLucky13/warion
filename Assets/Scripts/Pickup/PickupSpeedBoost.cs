@@ -8,10 +8,10 @@ namespace LearnGame.Pickup
         private float _power;
         [SerializeField]
         private float _time;
-        public override void PickUp(BaseCharacter character)
+        public override void PickUp(BaseCharacterView character)
         {
             base.PickUp(character);
-            character.SetSpeedBoost(_power,_time);
+            //character.SetSpeedBoost(_power,_time);
         }
     }
 }

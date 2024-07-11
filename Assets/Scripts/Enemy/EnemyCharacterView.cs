@@ -3,9 +3,9 @@ using UnityEngine;
 namespace LearnGame.Enemy
 {
     [RequireComponent(typeof(EnemyDirectionController))]
-    [RequireComponent(typeof(EnemyAiController))]
+    [RequireComponent(typeof(EnemyAiControllerView))]
 
-    public class EnemyCharacter : BaseCharacter
+    public class EnemyCharacterView : BaseCharacterView
     {
         
     }

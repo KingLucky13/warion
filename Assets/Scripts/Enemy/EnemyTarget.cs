@@ -8,10 +8,10 @@ namespace LearnGame.Enemy
 
         private readonly float _viewRadius;
         private readonly Transform _agentTransform;
-        private readonly PlayerCharacter _player;
+        private readonly PlayerCharacterView _player;
 
         private readonly Collider[] _colliders=new Collider[10];
-        public EnemyTarget(Transform agent,float viewRadius, PlayerCharacter player)
+        public EnemyTarget(Transform agent,float viewRadius, PlayerCharacterView player)
         {
             _agentTransform = agent;
             _viewRadius = viewRadius;
@@ -44,9 +44,9 @@ namespace LearnGame.Enemy
             {
                 var go = _colliders[i].gameObject;
                 if (go == _agentTransform.gameObject) continue;
-                var distnace = DistanceFromAgentTo(go);
-                if (distnace < minDistance) { 
-                    minDistance = distnace;
+                var distance = DistanceFromAgentTo(go);
+                if (distance < minDistance) { 
+                    minDistance = distance;
                     Closest = go;
                 }
             }

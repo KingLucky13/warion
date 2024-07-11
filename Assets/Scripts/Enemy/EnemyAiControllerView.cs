@@ -3,31 +3,34 @@ using UnityEngine;
 
 namespace LearnGame.Enemy
 {
-    public class EnemyAiController : MonoBehaviour
+    public class EnemyAiControllerView : MonoBehaviour
     {
         [SerializeField]
-        private float viewRadius = 20f;
+        private float _viewRadius = 20f;
 
         private EnemyTarget _target;
         private EnemyStateMachine _stateMachine;
 
+        public EnemyAiControllerModel Model { get; private set; }
+
         protected void Awake()
         {
-            var player=FindObjectOfType<PlayerCharacter>();
+            var player=GameManager.Instance.Player;
 
             var enemyDirectionController=GetComponent<EnemyDirectionController>();
 
             var navMesher = new NavMesher(transform);
 
-            _target = new EnemyTarget(transform,viewRadius,player);
+            _target = new EnemyTarget(transform,_viewRadius,player);
             _stateMachine = new EnemyStateMachine(enemyDirectionController,navMesher,_target);
+
+            Model = new EnemyAiControllerModel(_target, _stateMachine);
+
         }
 
         protected void Update()
         {
-            _target.FindClosest();
-            _stateMachine.Update();
-
+           Model.AiUpdate();
         }
     }
 }

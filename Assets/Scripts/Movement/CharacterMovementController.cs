@@ -1,61 +1,58 @@
+using LearnGame.Timer;
 using UnityEngine;
+
 namespace LearnGame.Movement
 {
-    [RequireComponent(typeof(CharacterController))]
 
-    public class CharacterMovementController : MonoBehaviour
+    public class CharacterMovementController:IMovementController
     {
-        [SerializeField]
-        private float _speed = 1f;
-        [SerializeField]
-        private float _rotationSpeed = 10f;
-        private static readonly float SqrtEps = Mathf.Epsilon *Mathf.Epsilon;
-        public Vector3 MovementDirection { get; set; }
-        public Vector3 LookDirection { get; set; }
-        private CharacterController _characterController;
+        private static readonly float SqrtEps = Mathf.Epsilon * Mathf.Epsilon;
 
-        private float _accelerationPower = 1f;
+        private readonly float _speed;
+        private readonly float _rotationSpeed;
+
+        private readonly float _accelerationPower;
+
         private float _accelerationTime=0f;
-
-        protected void Awake()
+        
+        private readonly ITimer _timer;
+        public CharacterMovementController(ICharacterConfig config,ITimer timer)
         {
-            _characterController = GetComponent<CharacterController>();
+            _speed = config.Speed;
+            _rotationSpeed = config.RotationSpeed;
+            _accelerationPower = config.AccelerationPower;
+
+           _timer = timer;
         }
 
-        protected void Update()
+        public Vector3 Translate(Vector3 movementDirection)
         {
-            Translate();
-            if(_rotationSpeed > 0f && LookDirection != Vector3.zero)
-            {
-                Rotate();
-            }
-        }
-
-        private void Translate()
-        {
-            Vector3 delta = MovementDirection * _speed * Time.deltaTime;
+            Vector3 delta = movementDirection * _speed * _timer.DeltaTime;
             if (_accelerationTime > 0f)
             {
                 delta = delta * _accelerationPower;
-                _accelerationTime -= Time.deltaTime;
+                _accelerationTime -= _timer.DeltaTime;
             }
-            _characterController.Move(delta);
+            return delta;
         }
 
-        private void Rotate()
+        public Quaternion Rotate(Quaternion currentRotation,Vector3 lookDirection)
         {
-            var _currentRotation = transform.rotation*Vector3.forward;
-            float sqrtMagnitude = (_currentRotation - LookDirection).sqrMagnitude;
-            if (sqrtMagnitude > SqrtEps)
+            if (_rotationSpeed > 0f && lookDirection != Vector3.zero)
             {
-                Quaternion newRotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation(LookDirection,Vector3.up),_rotationSpeed*Time.deltaTime);
-                transform.rotation= newRotation;
+                var currentLookDirection = currentRotation * Vector3.forward;
+                float sqrtMagnitude = (currentLookDirection - lookDirection).sqrMagnitude;
+                if (sqrtMagnitude > SqrtEps)
+                {
+                    Quaternion newRotation = Quaternion.Slerp(currentRotation, Quaternion.LookRotation(lookDirection, Vector3.up), _rotationSpeed * _timer.DeltaTime);
+                 return newRotation;
+                }
             }
+            return currentRotation;
         }
 
-        public void setSpeedBoost(float power,float time)
+        public void setSpeedBoost(float time)
         {
-            _accelerationPower = power;
             _accelerationTime = time;
         }
     }

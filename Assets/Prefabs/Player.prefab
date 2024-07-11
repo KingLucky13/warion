@@ -652,10 +652,9 @@ GameObject:
   - component: {fileID: 1830107006174518742}
   - component: {fileID: 9083181348653349781}
   - component: {fileID: 7167717882870839844}
-  - component: {fileID: 2570766715440268870}
   - component: {fileID: 3432285154672941283}
-  - component: {fileID: 1067953757433958626}
   - component: {fileID: 1707270786920851746}
+  - component: {fileID: 5118648828374522729}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -769,20 +768,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2570766715440268870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2118957128821695611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0c2f3ce0c68fd140b8b6ce47bb8ea3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 5
-  _rotationSpeed: 10
 --- !u!114 &3432285154672941283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -795,22 +780,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ceeb8c07798272478a721820bc54d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 1707270786920851746}
-  _baseWeapon: {fileID: 6085233248160983363, guid: 5aab1000547d46045ba723e7ece7c05e, type: 3}
+  _baseWeapon: {fileID: 11400000, guid: 31373ebfc9dcf17458fc2690a9720440, type: 2}
   _hand: {fileID: 203205387896164723}
-  _hp: 5
---- !u!114 &1067953757433958626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2118957128821695611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ba5522960d8b0347a097c51205eb48b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &1707270786920851746
 Animator:
   serializedVersion: 5
@@ -832,6 +803,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5118648828374522729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118957128821695611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bd4b0e629488f847b66418a92611e15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterConfig: {fileID: 11400000, guid: 3d393ccedf76eb14e9561f9b5f2a0c3f, type: 2}
+  _view: {fileID: 3432285154672941283}
 --- !u!1 &2670392637029880798
 GameObject:
   m_ObjectHideFlags: 0

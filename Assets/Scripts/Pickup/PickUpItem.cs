@@ -7,7 +7,7 @@ namespace LearnGame.Pickup
     {
         public event Action<PickUpItem> OnPickedUp;
 
-        public virtual void PickUp(BaseCharacter character)
+        public virtual void PickUp(BaseCharacterView character)
         {
             OnPickedUp?.Invoke(this);
         }
